@@ -5,8 +5,8 @@ import { readdir } from 'fs/promises';
 var myScreen = screen({
   smartCSR: true
 })
-async function fire(path: string) : Promise<string> {
-    return await (await readdir(path)).join('\n');
+async function fire(path: string) : Promise<string[]> {
+    return await readdir(path);
 }
 
 
@@ -98,11 +98,7 @@ myBox.on('click', async function() {
           }
         }}
     )
-    myTable.setData([
-        [ 'Animals',  'Foods'  ],
-        [ 'Elephant', 'Apple'  ],
-        [ 'Bird',     'Orange' ]
-    ]);
+    myTable.setData((await fire(__dirname)).map(m => ([m])));
     myBox.append(myTable);
     myScreen.render();
 });
