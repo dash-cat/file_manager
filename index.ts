@@ -14,6 +14,27 @@ async function fire(path: string) : Promise<string> {
 myScreen.title = 'my window title';
 
 // Create a box perfectly centered horizontally and vertically.
+const myMiniBox = box({
+    bottom: 0,
+    right: 0,
+    width: '30%',
+    height: '30%',
+    content: '{center}\n close me!{/center}',
+    tags: true,
+    border: {
+      type: 'bg'
+    },
+    style: {
+      fg: 'black',
+      bg: 'white',
+      border: {
+        fg: 'black'
+      },
+      hover: {
+        bg: 'red'
+      }
+    }
+})
 var myBox = box({
   top: 'center',
   left: 'center',
@@ -38,6 +59,8 @@ var myBox = box({
 
 // Append our box to the screen.
 myScreen.append(myBox);
+myScreen.append(myMiniBox);
+
 
 // Add a png icon to the box
 // var icon = image({
