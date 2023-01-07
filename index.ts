@@ -17,29 +17,24 @@ myScreen.title = 'my window title';
 const myMiniBox = box({
     bottom: 0,
     right: 0,
-    width: '30%',
-    height: '30%',
+    width: '97%',
+    height: '20%',
     content: '{center}\n close me!{/center}',
     tags: true,
-    border: {
-      type: 'bg'
-    },
     style: {
       fg: 'black',
       bg: 'white',
-      border: {
-        fg: 'black'
-      },
+     
       hover: {
         bg: 'red'
       }
     }
 })
 var myBox = box({
-  top: 'center',
-  left: 'center',
-  width: '80%',
-  height: '80%',
+  top: 0,
+  left: 0,
+  width: '60%',
+  height: '100%',
   content: '{center}\n Hello shluskha, push me!{/center}',
   tags: true,
   border: {
@@ -57,9 +52,32 @@ var myBox = box({
   }
 })
 
+var rightBox = box({
+    top: 0,
+    right: 0,
+    width: '40%',
+    height: '100%',
+    content: '{center}commands{/center}',
+    tags: true,
+    border: {
+      type: 'line'
+    },
+    style: {
+      fg: 'white',
+      bg: 'magenta',
+      border: {
+        fg: '#f0f0f0'
+      },
+      hover: {
+        bg: 'green'
+      }
+    }
+  })
+
 // Append our box to the screen.
 myScreen.append(myBox);
-myScreen.append(myMiniBox);
+rightBox.append(myMiniBox);
+myScreen.append(rightBox);
 
 
 // Add a png icon to the box
