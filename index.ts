@@ -79,6 +79,9 @@ myBox.on('click', async function() {
   myBox.setContent(`{center}${await fire(__dirname)}{/center}`);
   myScreen.render();
 });
+myMiniBox.on('click', function() { 
+    process.exit(0);
+ });
 
 // If box is focused, handle `enter`/`return` and give us some more content.
 myBox.key('enter', function() {
