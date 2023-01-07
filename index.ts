@@ -1,4 +1,4 @@
-import { screen , box,  } from 'blessed';
+import { screen , box, table } from 'blessed';
 import { readdir } from 'fs/promises';
 
 // Create a screen object.
@@ -55,7 +55,7 @@ var myBox = box({
       bg: 'green'
     }
   }
-});
+})
 
 // Append our box to the screen.
 myScreen.append(myBox);
@@ -76,8 +76,35 @@ myScreen.append(myMiniBox);
 
 // If our box is clicked, change the content.
 myBox.on('click', async function() {
-  myBox.setContent(`{center}${await fire(__dirname)}{/center}`);
-  myScreen.render();
+  //myBox.setContent(`{center}${await fire(__dirname)}{/center}`);
+   const myTable =  table({
+        top: 'center',
+        left: 'center',
+        width: '80%',
+        height: '80%',
+        content: '{center}\n Hello shluskha, push me!{/center}',
+        tags: true,
+        border: {
+          type: 'line'
+        },
+        style: {
+          fg: 'white',
+          bg: 'magenta',
+          border: {
+            fg: '#f0f0f0'
+          },
+          hover: {
+            bg: 'green'
+          }
+        }}
+    )
+    myTable.setData([
+        [ 'Animals',  'Foods'  ],
+        [ 'Elephant', 'Apple'  ],
+        [ 'Bird',     'Orange' ]
+    ]);
+    myBox.append(myTable);
+    myScreen.render();
 });
 myMiniBox.on('click', function() { 
     process.exit(0);
