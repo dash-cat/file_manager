@@ -1,9 +1,16 @@
 import { screen , box,  } from 'blessed';
+import { readdir } from 'fs/promises';
 
 // Create a screen object.
 var myScreen = screen({
   smartCSR: true
-});
+})
+async function fire () {
+        return await readdir(__dirname);
+}
+
+const lee = fire()
+
 
 myScreen.title = 'my window title';
 
@@ -13,7 +20,7 @@ var myBox = box({
   left: 'center',
   width: '50%',
   height: '50%',
-  content: 'Hello {bold}world{/bold}!',
+  content: 'lee',
   tags: true,
   border: {
     type: 'line'
@@ -46,8 +53,8 @@ myScreen.append(myBox);
 // });
 
 // If our box is clicked, change the content.
-myBox.on('click', function() {
-  myBox.setContent('{center}Some different {red-fg}content{/red-fg}.{/center}');
+myBox.on('click', async function() {
+  myBox.setContent(`${await fire()}`);
   myScreen.render();
 });
 
