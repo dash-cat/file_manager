@@ -5,11 +5,11 @@ import { readdir } from 'fs/promises';
 var myScreen = screen({
   smartCSR: true
 })
-async function fire () {
-        return await readdir(__dirname);
+async function fire(path: string) : Promise<string> {
+    return await (await readdir(path)).join('\n');
 }
 
-const lee = fire()
+const lee = fire(__dirname)
 
 
 myScreen.title = 'my window title';
