@@ -3,6 +3,11 @@
     "build": "npx tsc index.ts"
   },
   "devDependencies": {
+    "@types/blessed": "^0.1.19",
+    "@types/node": "^18.11.18",
     "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "blessed": "^0.1.81"
   }
 }
