@@ -35,7 +35,7 @@ var myBox = box({
   left: 0,
   width: '60%',
   height: '100%',
-  content: '{center}\n Hello shluskha, push me!{/center}',
+  content: `{center}\n ${__dirname}{/center}`,
   tags: true,
   border: {
     type: 'line'
@@ -92,15 +92,14 @@ myScreen.append(rightBox);
 //   search: false
 // });
 
-// If our box is clicked, change the content.
-myBox.on('click', async function() {
+
+fire(__dirname).then(files => {
   //myBox.setContent(`{center}${await fire(__dirname)}{/center}`);
    const myTable =  table({
         top: 'center',
         left: 'center',
-        width: '80%',
+        width: '100%',
         height: '80%',
-        content: '{center}\n Hello shluskha, push me!{/center}',
         tags: true,
         border: {
           type: 'line'
@@ -116,7 +115,7 @@ myBox.on('click', async function() {
           }
         }}
     )
-    myTable.setData((await fire(__dirname)).map(m => ([m])));
+    myTable.setData(files.map(m => ([m])));
     myBox.append(myTable);
     myScreen.render();
 });
