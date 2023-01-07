@@ -9,7 +9,6 @@ async function fire(path: string) : Promise<string> {
     return await (await readdir(path)).join('\n');
 }
 
-const lee = fire(__dirname)
 
 
 myScreen.title = 'my window title';
@@ -18,9 +17,9 @@ myScreen.title = 'my window title';
 var myBox = box({
   top: 'center',
   left: 'center',
-  width: '50%',
-  height: '50%',
-  content: 'lee',
+  width: '80%',
+  height: '80%',
+  content: '{center}\n Hello shluskha, push me!{/center}',
   tags: true,
   border: {
     type: 'line'
@@ -54,7 +53,7 @@ myScreen.append(myBox);
 
 // If our box is clicked, change the content.
 myBox.on('click', async function() {
-  myBox.setContent(`${await fire()}`);
+  myBox.setContent(`{center}${await fire(__dirname)}{/center}`);
   myScreen.render();
 });
 
