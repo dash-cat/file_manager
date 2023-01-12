@@ -1,5 +1,7 @@
 import { screen , box, table , filemanager} from 'blessed';
 import { readdir } from 'fs/promises';
+import { mkdir } from 'node:fs/promises';
+import { join as pathJoin } from 'path';
 
 // Create a screen object.
 var myScreen = screen({
@@ -61,35 +63,49 @@ var fm = filemanager({
       bg: 'blue'
     }
   },
-  height: 'half',
+  height: '100%',
   width: 'half',
   top: 'center',
-  left: 'center',
+  left: 'left',
   label: ' {blue-fg}%path{/blue-fg} ',
   cwd: process.env.HOME,
   keys: true,
   vi: true,
+  scrollable: true,
   scrollbar: {
     ch: ' '
   }
 });
 
-var yybox = box({
-  style: {
-    bg: 'green'
-  },
-  border: 'line',
-  height: 'half',
-  width: 'half',
-  top: 'center',
-  left: 'center',
-  hidden: true
+var newFolder = box({
+  parent: rightBox,
+    top: '50%',
+    right: 0,
+    width: '97%',
+    height: '20%',
+    content: '{center}\n New Folder{/center}',
+    tags: true,
+    style: {
+      fg: 'black',
+      bg: 'white',
+     
+      hover: {
+        bg: 'red'
+      }
+    }
 });
+
 
 fm.refresh();
 myScreen.render();
 fm.focus();
+
     
+newFolder.on('click', async function() {
+    await mkdir(pathJoin(fm.cwd, "New Folder"), { recursive: true }) 
+    fm.refresh();
+    fm.focus();
+})
 
 myMiniBox.on('click', function() { 
     process.exit(0);
